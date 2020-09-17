@@ -1,0 +1,11 @@
+Create Service Account:
+kubectl create serviceaccount jenkins-master -n jenkins
+
+get jenkins-master service account token:
+kubectl get secret $(kubectl get sa jenkins-master -n jenkins -o jsonpath={.secrets[0].name}) -n jenkins -o jsonpath={.data.token} | base64 --decode
+
+Get Kubernetes API server address:
+kubectl config view --minify | grep server | cut -f 2- -d ":" | tr -d " "
+
+Get Kubernetes server CA certificate key:
+kubectl get secret $(kubectl get sa jenkins-master -n jenkins -o jsonpath={.secrets[0].name}) -n jenkins -o jsonpath={.data.'ca\.crt'} | base64 --decode
