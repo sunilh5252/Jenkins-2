@@ -1,19 +1,19 @@
 jobs:
     - script: >
-      pipelineJob('myjob1') {
-        definition {
-          cps {
-            script("""\
-              pipeline {
-                agent any
-                stages {
-                  stage ('test') {
-                    steps {
-                      echo "hello"
+        pipelineJob('myjob1') {
+          definition {
+            cps {
+              script("""\
+                pipeline {
+                  agent any
+                  stages {
+                    stage ('test') {
+                      steps {
+                        echo "hello"
+                      }
                     }
                   }
-                }
-              }""".stripIndent())
+                }""".stripIndent())
+            }
           }
         }
-      }
