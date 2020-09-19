@@ -13,7 +13,7 @@ spec:
   ports:
     - protocol: TCP
       name: "http"
-      port: 8080
+      port: 80
       targetPort: 8080
     - protocol: TCP
       name: "jnlp"
@@ -41,9 +41,6 @@ spec:
         - name: jenkins
           image: premkumarbp3/jenkins-master
           imagePullPolicy: Never
-          env:
-            - name: JAVA_OPTS
-              value: -Djenkins.install.runSetupWizard=false
           ports:
             - name: http-port
               containerPort: 8080
@@ -71,4 +68,4 @@ spec:
           - path: /
             backend:
               serviceName: jenkins
-              servicePort: 8080
+              servicePort: 80
