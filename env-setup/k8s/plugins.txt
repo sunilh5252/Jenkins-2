@@ -134,7 +134,6 @@ configuration-as-code
 aws-credentials
 amazon-ecr
 badge
-configuration-as-code
 configuration-as-code-groovy
 sonar
 templating-engine
