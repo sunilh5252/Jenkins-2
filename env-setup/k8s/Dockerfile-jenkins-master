@@ -1,30 +1,10 @@
 from jenkins/jenkins:lts
 
-# Distributed Builds plugins
-RUN /usr/local/bin/install-plugins.sh ssh-slaves
+COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 
-# install Notifications and Publishing plugins
-RUN /usr/local/bin/install-plugins.sh email-ext
-RUN /usr/local/bin/install-plugins.sh mailer
-RUN /usr/local/bin/install-plugins.sh slack
-
-# Artifacts
-RUN /usr/local/bin/install-plugins.sh htmlpublisher
-
-# UI
-RUN /usr/local/bin/install-plugins.sh ansicolor
-RUN /usr/local/bin/install-plugins.sh greenballs
-RUN /usr/local/bin/install-plugins.sh simple-theme-plugin
-
-# Scaling
-RUN /usr/local/bin/install-plugins.sh kubernetes
-
-#configuration as code plugin
-RUN /usr/local/bin/install-plugins.sh configuration-as-code
-RUN /usr/local/bin/install-plugins.sh configuration-as-code-groovy
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 # install Maven
 USER root
 RUN apt-get update && apt-get install -y maven
 USER jenkins
-
